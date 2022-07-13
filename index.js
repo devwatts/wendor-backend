@@ -4,6 +4,7 @@ const app = new express();
 
 const PORT = process.env.PORT || 3000;
 
+require('./src/config/db')
 require('./src/config/cors')
 
 app.get('/',(req,res) => {
