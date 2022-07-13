@@ -9,10 +9,19 @@ app.use(express.json({
 }));
 
 require('./src/config/dbConnection')
-require('./src/config/cors')
+
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    return next();
+});
+
 
 const products = require('./src/routes/products')
 const Login = require('./src/routes/login')
+
 
 app.get('/',(req,res) => {
     res.send({message:"Server ok"})
