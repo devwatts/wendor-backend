@@ -6,25 +6,33 @@ const client = require('twilio')(accountSid, authToken);
 
 const confirmOTP = async (otp) => {
     return new Promise(function (resolve, reject) {
-        client.verify.v2.services(app_sid)
-            .verificationChecks
-            .create({
-                to: '+919355350111',
-                code: otp
-            })
-            .then(verification_check => resolve(verification_check));
+        try {
+            client.verify.v2.services(app_sid)
+                .verificationChecks
+                .create({
+                    to: '+919355350111',
+                    code: otp
+                })
+                .then(verification_check => resolve(verification_check));
+        } catch (err) {
+            reject('An Error occurred', err);
+        }
     })
 }
 
 const sendOTP = async (phone) => {
     return new Promise(function (resolve, reject) {
-        client.verify.v2.services(app_sid)
-            .verifications
-            .create({
-                to: phone,
-                channel: 'sms'
-            })
-            .then(verification => resolve(verification));
+        try {
+            client.verify.v2.services(app_sid)
+                .verifications
+                .create({
+                    to: phone,
+                    channel: 'sms'
+                })
+                .then(verification => resolve(verification));
+        } catch (err) {
+            reject('An Error occurred', err);
+        }
     })
 }
 
