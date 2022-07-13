@@ -14,11 +14,12 @@ client.connect(err => {
 })
 
 const Query = async (query) => {
-  return new Promise(function(res,rej){
+  return new Promise(function(resolve,reject){
     client.query(query, (err, res) => {
-      if (err) throw err
-      console.log(res.rows)
-      return res.rows;
+      if (err){
+        reject(err)
+      }
+      resolve(res.rows);
     })
   })
 }
