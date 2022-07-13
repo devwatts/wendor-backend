@@ -1,8 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const app = new express();
 require('dotenv').config()
 const PORT = process.env.PORT || 3000;
+
+app.use(express.json({
+    limit: "20mb"
+}));
 
 require('./src/config/dbConnection')
 require('./src/config/cors')
