@@ -1,5 +1,7 @@
+const { sendOTP,confirmOTP } = require("../middleware/twilio");
+
 const Login = async(req,res) => {
-    res.send('ok')
+    console.log(req.body)
 }
 
 module.exports = {
