@@ -4,16 +4,19 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const app_sid = process.env.TWILIO_APP_SERVICE_ID;
 const client = require('twilio')(accountSid, authToken);
 
-const confirmOTP = async (otp) => {
+const confirmOTP = async (phone,otp) => {
     return new Promise(function (resolve, reject) {
         try {
             client.verify.v2.services(app_sid)
                 .verificationChecks
                 .create({
-                    to: '+919355350111',
+                    to: phone,
                     code: otp
                 })
-                .then(verification_check => resolve(verification_check));
+                .then(verification_check => {
+                    console.log(verification_check)
+                    resolve(verification_check)
+                });
         } catch (err) {
             reject('An Error occurred', err);
         }
