@@ -8,11 +8,13 @@ require('./src/config/dbConnection')
 require('./src/config/cors')
 
 const products = require('./src/routes/products')
+const Login = require('./src/routes/login')
 
 app.get('/',(req,res) => {
     res.send({message:"Server ok"})
 })
 
+app.use('/login',Login)
 app.use('/products',products);
 
 app.listen(PORT,function(){
