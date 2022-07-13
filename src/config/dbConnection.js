@@ -10,3 +10,9 @@ client.connect(err => {
       console.log('connected')
     }
   })
+
+  client.query('select * from products', (err, res) => {
+    if (err) throw err
+    console.log(res.rows)
+    client.end()
+  })
