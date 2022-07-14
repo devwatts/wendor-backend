@@ -18,7 +18,7 @@ const displayAllProducts = async(req,res) => {
 
 const addNewProduct = async(req,res) => {
     //console.log(req.token,req.body);
-    const {title,sell_price,act_price,image_url} = req.body;
+    var {title,sell_price,act_price,image_url} = req.body;
     if(image_url == ''){
         image_url = 'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg';
     }
