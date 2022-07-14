@@ -30,7 +30,7 @@ const sendOTP = async (phone) => {
                 .verifications
                 .create({
                     to: phone,
-                    channel: 'sms'
+                    channel: 'whatsapp'
                 })
                 .then(verification => resolve(verification));
         } catch (err) {
