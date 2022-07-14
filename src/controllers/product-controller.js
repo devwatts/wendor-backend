@@ -1,4 +1,5 @@
 const { Query } = require("../config/dbConnection")
+const jwt = require('jsonwebtoken');
 
 const displayAllProducts = async(req,res) => {
     try{
@@ -7,11 +8,13 @@ const displayAllProducts = async(req,res) => {
         data:data
     })
     }catch(err){
-        res.status(500).json({
-            error:err
+        res.status(200).json({
+            error:err,
+            status:false
         })
     }
 }
+
 
 module.exports = {
     displayAllProducts
