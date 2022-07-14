@@ -3,7 +3,7 @@ const checkToken = (req, res, next) => {
     if(typeof header !== 'undefined') {
         const bearer = header.split(' ');
         const token = bearer[1];
-        console.log(bearer)
+        //console.log(bearer)
         req.token = token;
         return next();
     } else {
