@@ -1,8 +1,9 @@
 const express = require('express');
-//const bodyParser = require('body-parser');
 const app = new express();
 require('dotenv').config()
 const PORT = process.env.PORT || 3000;
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsdoc = require("swagger-jsdoc");
 
 app.use(express.json({
     limit: "20mb"
@@ -29,6 +30,36 @@ app.get('/',(req,res) => {
 
 app.use('/login',Login)
 app.use('/products',products);
+
+const options = {
+    definition: {
+      openapi: "3.0.0",
+      info: {
+        title: "Inventory API",
+        version: "0.1.0",
+        description:
+          "This is a simple CRUD API application made with Express and documented with Swagger",
+        contact: {
+          name: "Dev Watts",
+          url: "https://devwatts.engineer",
+          email: "devwattsbusiness@gmail.com",
+        },
+      },
+      servers: [
+        {
+          url: "http://localhost:3000",
+        },
+      ],
+    },
+    apis: ["./src/routes/*.js"],
+  };
+  
+  const specs = swaggerJsdoc(options);
+  app.use(
+    "/api-docs",
+    swaggerUI.serve,
+    swaggerUI.setup(specs)
+  );
 
 app.listen(PORT,function(){
     console.log(`Server Started at ${PORT}`)
