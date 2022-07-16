@@ -49,6 +49,9 @@ const options = {
         {
           url: "http://localhost:3000",
         },
+        {
+            url: "wattsinventory.herokuapp.com",
+          },
       ],
     },
     apis: ["./src/routes/*.js"],
